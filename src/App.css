@@ -1,0 +1,25 @@
+#body{
+  background-image: url("https://clipart-library.com/images/rTnreyLAc.jpg") ; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #ffff;
+}
+
+.cardlist{
+  display: flex;
+  flex-wrap: wrap
+}
+
+.filter-container{
+display: flex;
+justify-content: space-evenly;
+}
+
+.filterInput{
+  width: 200px;
+  color: aliceblue;
+  background-color: #000711;
+  border-radius: 15px;
+}
