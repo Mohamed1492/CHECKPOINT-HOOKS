@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { MovieList } from './components/MovieList';
 import { FilterButton } from './components/FilterButton';
 import { Button, Form } from 'react-bootstrap';
+import Rating from './components/Rating';
 
 const App = () => {
   const [movies, setMovies] = useState([
@@ -13,21 +14,24 @@ const App = () => {
       Title: "FAST X",
       Description: " production in 2023",
       Gender:"Action",
-      Poster: "https://static.bunnycdn.ru/i/cache/images/2/26/26e5d063413fca41c8120643b655e2bc.jpg"
+      Poster: "https://static.bunnycdn.ru/i/cache/images/2/26/26e5d063413fca41c8120643b655e2bc.jpg",
+      Rating: 3
     },
     {
       id: Math.random(),
       Title: "The Super Mario",
       Description: "production in 2023",
       Gender:"Anime",
-      Poster: "https://static.bunnycdn.ru/i/cache/images/a/a6/a626a19dca19799450594250720ebf38.jpg"
+      Poster: "https://static.bunnycdn.ru/i/cache/images/a/a6/a626a19dca19799450594250720ebf38.jpg",
+      Rating: 4
     },
     {
       id: Math.random(),
       Title: "The Covenant",
       Description: "production in 2023",
       Gender:"Action",
-      Poster: "https://static.bunnycdn.ru/i/cache/images/3/3f/3f91fd4aecac8beea4e10a565f805576.jpg"
+      Poster: "https://static.bunnycdn.ru/i/cache/images/3/3f/3f91fd4aecac8beea4e10a565f805576.jpg",
+      Rating: 5
     },
   
     {
@@ -35,14 +39,16 @@ const App = () => {
       Title: "Spider-Man",
       Description: "production in 2023",
       Gender:"Anime",
-      Poster: "https://static.bunnycdn.ru/i/cache/images/1/1e/1e317d9e04806839aae58bd9e5a7f0fe.jpg"
+      Poster: "https://static.bunnycdn.ru/i/cache/images/1/1e/1e317d9e04806839aae58bd9e5a7f0fe.jpg",
+      Rating: 4,
     },
     {
       id: Math.random(),
       Title: "Mr. Bean's Holiday",
       Description: "production in 2007",
       Gender:"Comedy",
-      Poster: "https://static.bunnycdn.ru/i/cache/images/2/25/2515d1ade3215b76a5fb72aa1d9038cb.jpg"
+      Poster: "https://static.bunnycdn.ru/i/cache/images/2/25/2515d1ade3215b76a5fb72aa1d9038cb.jpg",
+      Rating: 3
     }
   ]);
 
@@ -71,7 +77,8 @@ const App = () => {
       Title: newTitle,
       Description: newDescript,
       Gender: newGender,
-      Poster: newPoster
+      Poster: newPoster,
+      Rating: newRating,
     };
 
     handleAdd(newMovie);
@@ -84,10 +91,13 @@ const App = () => {
   };
 
   // 4 states of newMovie datas
-  const [newTitle, setnewTitle] = useState("newTitle");
-  const [newDescript, setnewDescript] = useState("newDescript");
-  const [newGender, setnewGender] = useState("newGender");
-  const [newPoster, setnewPoster] = useState("newPoster");
+  const [newTitle, setnewTitle] = useState("");
+  const [newDescript, setnewDescript] = useState("");
+  const [newGender, setnewGender] = useState("");
+  const [newPoster, setnewPoster] = useState("");
+  const [newRating, setnewRating] = useState(1);
+
+  const ratingFunction = (x)=> setnewRating(x);
   return (
     <>
     <br />
@@ -105,9 +115,9 @@ const App = () => {
 {/* Forum to enter new movie's datas */}
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Movie's Title:</Form.Label>
+          <Form.Label>Movie`s Title:</Form.Label>
           <Form.Control
-            type="text"
+            type="text" value={newTitle}
             placeholder="Enter Movie's Title"
             onChange={e => setnewTitle(e.target.value)}
           />
@@ -115,13 +125,14 @@ const App = () => {
 
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
         <Form.Label>Description:</Form.Label>
-        <Form.Control as="textarea" rows={3} placeholder="Enter the movie's description" onChange={e=>setnewDescript(e.target.value)} />
+        <Form.Control as="textarea" value={newDescript} rows={3} placeholder="Enter the movie's description" onChange={e=>setnewDescript(e.target.value)} />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Gender:</Form.Label>
           <Form.Select
             aria-label="Default select example"
+            value={newGender}
             onChange={e => setnewGender(e.target.value)}
           >
             <option>Choose the gender</option>
@@ -134,11 +145,17 @@ const App = () => {
         </Form.Group>
 
   <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Poster's link:</Form.Label>
+          <Form.Label>Poster`s link:</Form.Label>
           <Form.Control
             type="link"
+            value={newPoster}
             placeholder="Enter Poster's link"
-            onChange={e => setnewPoster(e.target.value)}
+            onChange={e => setnewPoster(e.target.value)
+            }
+          />
+        </Form.Group>
+  <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Rating rating={newRating } ratingFunction={ratingFunction}
           />
         </Form.Group>
 

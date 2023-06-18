@@ -1,10 +1,11 @@
-import React from 'react'
+
 import { Button, Card } from 'react-bootstrap'
+import Rating from './Rating'
 
 export const MovieCard = (props) => {
 console.log(props)
   return (
-    <div>
+    <div className='movieCard'>
         {/* structure of each card with details of each movie */}
         <Card style={{ width: '19rem' }}>
       <Card.Img style={{ height: '23rem' }} variant="top" src={props.movie.Poster} />
@@ -15,6 +16,9 @@ console.log(props)
         </Card.Text>
         <Card.Text>
         Gender: {props.movie.Gender}
+        </Card.Text>
+        <Card.Text>
+        <Rating rating={props.movie.Rating}/>
         </Card.Text>
         <Button variant="primary">Watch now</Button>
       </Card.Body>
