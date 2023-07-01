@@ -1,6 +1,7 @@
 
 import { Button, Card } from 'react-bootstrap'
 import Rating from './Rating'
+import { Link } from 'react-router-dom'
 
 export const MovieCard = (props) => {
 console.log(props)
@@ -17,10 +18,12 @@ console.log(props)
         <Card.Text>
         Gender: {props.movie.Gender}
         </Card.Text>
-        <Card.Text>
+        {/* <Card.Text> */}
         <Rating rating={props.movie.Rating}/>
-        </Card.Text>
+        {/* </Card.Text> */}
+        <Link to={`/details/${props.movie.id}`} >
         <Button variant="primary">Watch now</Button>
+        </Link>
       </Card.Body>
     </Card>
     </div>
